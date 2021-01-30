@@ -8,6 +8,7 @@
 #include "Echiquier.h"
 #include "Roi.h"
 #include "Fou.h"
+#include "Tour.h"
 
 using namespace std;
 
@@ -16,52 +17,60 @@ int main()
     Echiquier e;
     
     e.Affiche();
-    Fou f(Couleur::BLANC, true);
-    e.placer(&f);
+    Tour t(Couleur::NOIR, true);
+    e.placer(&t);
     e.Affiche();
 
-    bool v = f.mouvementValide(e, 0, 2); //A3
+    int x, y; 
+    bool v;
+
+    x = 0, y = 7;
+    v = t.mouvementValide(e, x, y); //A8
 
     if (v)
     {
-        e.enleverPiece(f.getX(), f.getY());
-        f.deplace(0, 2);
-        e.deplacer(&f, 0, 2);
+        e.enleverPiece(t.getX(), t.getY());
+        t.deplace(x, y);
+        e.deplacer(&t, x, y);
     }
     e.Affiche();
 
-    v = f.mouvementValide(e, 3, 5); //D6
+    x = 7, y = 7;
+    v = t.mouvementValide(e, x, y); //H8
 
     if (v)
     {
-        e.enleverPiece(f.getX(), f.getY());
-        f.deplace(3, 5);
-        e.deplacer(&f, 3, 5);
+        e.enleverPiece(t.getX(), t.getY());
+        t.deplace(x, y);
+        e.deplacer(&t, x, y);
     }
     e.Affiche();
 
 
-    v = f.mouvementValide(e, 5, 3); //F4
+    x =7, y = 0;
+    v = t.mouvementValide(e, x, y); //H1
 
     if (v)
     {
-        e.enleverPiece(f.getX(), f.getY());
-        f.deplace(5, 3);
-        e.deplacer(&f, 5, 3);
+        e.enleverPiece(t.getX(), t.getY());
+        t.deplace(x, y);
+        e.deplacer(&t, x, y);
     }
     e.Affiche();
 
-    v = f.mouvementValide(e, 2, 0); //C2
+
+    x = 0, y = 0;
+    v = t.mouvementValide(e, x, y); //A1
 
     if (v)
     {
-        e.enleverPiece(f.getX(), f.getY());
-        f.deplace(2, 0);
-        e.deplacer(&f, 2, 0);
+        e.enleverPiece(t.getX(), t.getY());
+        t.deplace(x, y);
+        e.deplacer(&t, x, y);
     }
     e.Affiche();
 
-    cout << f.codePiece() << endl;
+    cout << t.codePiece() << endl;
     cout << e.conversion('A',7) << endl;
 
     Piece r = Roi(Couleur::BLANC);

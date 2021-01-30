@@ -18,7 +18,6 @@ enum class Couleur
 	NOIR
 };
 
-
 /**
  * Declaration d'une classe modélisant une piece de jeu d'echec.
  */
