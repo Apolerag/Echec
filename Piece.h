@@ -37,7 +37,7 @@ protected:
 
 public:
 	Piece();
-	~Piece();
+	virtual ~Piece();
 	Piece(const Piece& p);
 	Piece& operator=(const Piece& p);
 	Piece(const int x, const int y, const Couleur c);
