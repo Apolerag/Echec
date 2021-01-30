@@ -28,13 +28,6 @@ Echiquier::Echiquier()
 
 Echiquier::~Echiquier()
 {
-	for (int i = 0; i < 64; i++)
-	{
-		if (m_cases[i] != NULL)
-		{
-			delete m_cases[i];
-		}
-	}
 }
 
 /**
@@ -49,7 +42,7 @@ Echiquier::~Echiquier()
 Piece* Echiquier::getPiece(int x, int y)
 {
 	if (coordonneesValide(x, y))
-		return m_cases[conversion(x - 1, y - 1)];
+		return m_cases[conversion(x, y)];
 	return NULL;
 }
 
@@ -148,7 +141,7 @@ Piece* Echiquier::enleverPiece(int x, int y)
 void Echiquier::Affiche()
 {
 	cout << endl << "  ABCDEFGH" << endl;
-	for (int y = 0; y < 8; ++y)
+	for (int y = 7; y >= 0; --y)
 	{
 		cout << y+1 << " ";
 		for (int x = 0; x < 8; ++x)
