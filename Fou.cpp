@@ -53,3 +53,7 @@ Fou::codePiece()
 {
     return (m_couleur == Couleur::BLANC) ? 'F' : 'f';
 }
+
+Fou::Fou(const int x, const int y, const Couleur c) : Piece(x, y, c)
+{
+}

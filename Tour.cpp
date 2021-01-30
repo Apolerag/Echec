@@ -75,3 +75,7 @@ char Tour::codePiece()
 {
     return (m_couleur == Couleur::BLANC) ? 'T' : 't';
 }
+
+Tour::Tour(const int x, const int y, const Couleur c): Piece(x,y,c)
+{
+}

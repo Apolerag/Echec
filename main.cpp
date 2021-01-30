@@ -9,6 +9,7 @@
 #include "Roi.h"
 #include "Fou.h"
 #include "Tour.h"
+#include "Reine.h"
 
 using namespace std;
 
@@ -17,63 +18,76 @@ int main()
     Echiquier e;
 
     e.Affiche();
-    Tour t(Couleur::NOIR, true);
-    e.placer(&t);
+    Reine *reine = new Reine(Couleur::NOIR);
+    e.placer(reine);
     e.Affiche();
 
+    cerr << reine->Piece::getColonne() << " " << reine->getLigne() << endl;
+    
     int x, y;
     bool v;
 
     x = 0, y = 7;
-    v = t.mouvementValide(e, x, y); //A8
+    v = reine->mouvementValide(e, x, y); //A8
 
     if (v)
     {
-        e.enleverPiece(t.getX(), t.getY());
-        t.deplace(x, y);
-        e.deplacer(&t, x, y);
+        e.enleverPiece(reine->getX(), reine->getY());
+        reine->Fou::deplace(x, y);
+        e.deplacer(reine, x, y);
     }
     e.Affiche();
-
+    
     x = 7, y = 7;
-    v = t.mouvementValide(e, x, y); //H8
+    v = reine->mouvementValide(e, x, y); //H8
 
     if (v)
     {
-        e.enleverPiece(t.getX(), t.getY());
-        t.deplace(x, y);
-        e.deplacer(&t, x, y);
+        e.enleverPiece(reine->getX(), reine->getY());
+        reine->Fou::deplace(x, y);
+        e.deplacer(reine, x, y);
     }
     e.Affiche();
 
 
     x = 7, y = 0;
-    v = t.mouvementValide(e, x, y); //H1
+    v = reine->mouvementValide(e, x, y); //H1
 
     if (v)
     {
-        e.enleverPiece(t.getX(), t.getY());
-        t.deplace(x, y);
-        e.deplacer(&t, x, y);
+        e.enleverPiece(reine->getX(), reine->getY());
+        reine->Fou::deplace(x, y);
+        e.deplacer(reine, x, y);
     }
     e.Affiche();
 
 
     x = 0, y = 0;
-    v = t.mouvementValide(e, x, y); //A1
+    v = reine->mouvementValide(e, x, y); //A1
 
     if (v)
     {
-        e.enleverPiece(t.getX(), t.getY());
-        t.deplace(x, y);
-        e.deplacer(&t, x, y);
+        e.enleverPiece(reine->getX(), reine->getY());
+        reine->Fou::deplace(x, y);
+        e.deplacer(reine, x, y);
     }
     e.Affiche();
 
-    cout << t.codePiece() << endl;
-    cout << e.conversion('A', 7) << endl;
+    x = 4, y = 4;
+    v = reine->mouvementValide(e, x, y); //E5
+
+    if (v)
+    {
+        e.enleverPiece(reine->getX(), reine->getY());
+        reine->Fou::deplace(x, y);
+        e.deplacer(reine, x, y);
+    }
+    e.Affiche();
+
 
     Piece r = Roi(Couleur::BLANC);
+
+    delete reine;
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
