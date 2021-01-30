@@ -11,6 +11,7 @@
 #include "Piece.h"
 class Roi : public Piece
 {
+	virtual Erreur miseAJourDeplacementPossible();
 };
 
 #endif // !defined Roi_h

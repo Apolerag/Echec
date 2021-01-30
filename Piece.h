@@ -21,26 +21,37 @@ enum class _Couleur
 };
 typedef _Couleur Couleur;
 
-typedef pair<int, int> Position;
-
+/**
+ * Declaration d'une classe modélisant une piece de jeu d'echec.
+ */
 class Piece
 {
 protected:
-	Position m_position;
+	int m_x;
+	int m_y;
 	Couleur m_couleur;
-	vector<Position> m_deplacementPossible;
+
+
+	virtual bool mouvementValide();
+
+
 public:
 	Piece();
 	~Piece();
 	Piece(const Piece& p);
+	Piece& operator=(const Piece& p);
 	Piece(const int x, const int y, const Couleur c);
 
-protected:
-	virtual Erreur miseAJourDeplacementPossible() = 0;
+	void init(int x, int y, Couleur c);
+	void deplace(int x, int y);
 
-public:
-	Erreur deplacement(const int x, const int y);
-	Erreur deplacement(const char colonne, const int ligne);
+	int X();
+	int Y();
+	char Colonne();
+	int Ligne();
+	Couleur couleur();
+
+	virtual char codePiece();
 };
 
 #endif // !defined Piece_h

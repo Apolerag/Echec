@@ -1,6 +1,7 @@
 #include "Piece.h"
 
-Piece::Piece() : m_position(0, 0), m_couleur(Couleur::BLANC)
+
+Piece::Piece() : m_x(0), m_y(0), m_couleur(Couleur::BLANC)
 {
 }
 
@@ -8,42 +9,68 @@ Piece::~Piece()
 {
 }
 
-Piece::Piece(const Piece& p) : m_position(p.m_position), m_couleur(p.m_couleur), m_deplacementPossible(p.m_deplacementPossible)
+Piece::Piece(const Piece& p) : m_x(p.m_x), m_y(p.m_y),m_couleur(p.m_couleur)
 {
 }
 
-Piece::Piece(const int x, const int y, const Couleur c) : m_couleur(c), m_position(x, y)
+Piece& Piece::operator=(const Piece& p)
 {
+	m_x = p.m_x;
+	m_y = p.m_y;
+	m_couleur = p.m_couleur;
+	return *this;
 }
 
-Erreur Piece::deplacement(const int x, const int y)
+Piece::Piece(const int x, const int y, const Couleur c)
 {
-	Erreur e = Erreur::NO_ERREUR;
-	if (x < 0 || x > 7 || y < 0 || y > 7)
-	{
-		e = Erreur::COORDONNEES_INVALIDE;
-	}
-	else
-	{
-		m_position = { x,y };
-		e = miseAJourDeplacementPossible();
-	}
-	return e;
+	m_couleur = c;
+	m_x = x;
+	m_y = y;
 }
 
-Erreur Piece::deplacement(const char colonne, const int ligne)
+void Piece::init(int x, int y, Couleur c)
 {
-	Erreur e = Erreur::NO_ERREUR;
+	m_x = x;
+	m_y = y;
+	m_couleur = c;
+}
 
-	if (colonne < 'A' || colonne > 'H' || ligne < 1 || ligne > 8)
-	{
-		e = Erreur::COORDONNEES_INVALIDE;
-	}
-	else
-	{
-		int x = colonne - 'A', y = ligne - 1;
-		e = deplacement(x, y);
-	}
+void Piece::deplace(int x, int y)
+{
+	m_x = x;
+	m_y = y;
+}
+int Piece::X()
+{
+	return m_x;
+}
 
-	return e;
+int Piece::Y()
+{
+	return m_y;
+}
+
+char Piece::Colonne()
+{
+	return m_x + 'A';
+}
+
+int Piece::Ligne()
+{
+	return m_y + 1;
+}
+
+Couleur Piece::couleur()
+{
+	return m_couleur;
+}
+
+bool Piece::mouvementValide()
+{
+	return false;
+}
+
+char Piece::codePiece()
+{
+	return (couleur() == Couleur::BLANC) ? 'B' : 'N';
 }

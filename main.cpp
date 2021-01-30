@@ -3,19 +3,20 @@
 */
 
 #include <iostream>
+#include <typeinfo>
+
+#include "Echiquier.h"
+#include "Roi.h"
 
 using namespace std;
 
 int main()
 {
-    char colonne = 'H';
-    int ligne = 2;
-    int x = colonne - 'A', y = ligne - 1;
+    Echiquier e;
 
-    cout << x << " " << y << endl;
-    //e = deplacement(x, y);
+    cout << e.conversion('A',7) << endl;
 
-    std::cout << "Hello World!\n";
+    Piece r = Roi();
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
