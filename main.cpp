@@ -16,7 +16,7 @@ int main()
 
     cout << e.conversion('A',7) << endl;
 
-    Piece r = Roi();
+    Piece r = Roi(Couleur::BLANC);
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

@@ -81,8 +81,8 @@ bool Echiquier::placer(Piece* p)
 {
 	bool result = false;
 	if (p == NULL) return false;
-	int position = conversion(p->X(), p->Y());
-	if (coordonneesValide(p->X(), p->Y()) && m_cases[position] == NULL)
+	int position = conversion(p->getX(), p->getY());
+	if (coordonneesValide(p->getX(), p->getY()) && m_cases[position] == NULL)
 	{
 		m_cases[position] = p;
 		result = true;
@@ -106,8 +106,8 @@ bool Echiquier::placer(Piece* p)
 bool Echiquier::deplacer(Piece* p, int x, int y)
 {
 	bool result = false;
-	int xDepart = p->X();
-	int yDepart = p->Y();
+	int xDepart = p->getX();
+	int yDepart = p->getY();
 
 	if (coordonneesValide(x, y))
 	{

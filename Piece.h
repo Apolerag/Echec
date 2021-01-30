@@ -7,19 +7,17 @@
 #if !defined Piece_h
 #define Piece_h
 
-#include <utility>
-#include <vector>
-
 #include "Erreur.h"
 
-using namespace std;
+class Echiquier;
 
-enum class _Couleur
+using namespace std;
+enum class Couleur
 {
 	BLANC,
 	NOIR
 };
-typedef _Couleur Couleur;
+
 
 /**
  * Declaration d'une classe modélisant une piece de jeu d'echec.
@@ -45,11 +43,11 @@ public:
 	void init(int x, int y, Couleur c);
 	void deplace(int x, int y);
 
-	int X();
-	int Y();
-	char Colonne();
-	int Ligne();
-	Couleur couleur();
+	int getX();
+	int getY();
+	char getColonne();
+	int getLigne();
+	Couleur getCouleur();
 
 	virtual char codePiece();
 };

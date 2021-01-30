@@ -40,27 +40,27 @@ void Piece::deplace(int x, int y)
 	m_x = x;
 	m_y = y;
 }
-int Piece::X()
+int Piece::getX()
 {
 	return m_x;
 }
 
-int Piece::Y()
+int Piece::getY()
 {
 	return m_y;
 }
 
-char Piece::Colonne()
+char Piece::getColonne()
 {
 	return m_x + 'A';
 }
 
-int Piece::Ligne()
+int Piece::getLigne()
 {
 	return m_y + 1;
 }
 
-Couleur Piece::couleur()
+Couleur Piece::getCouleur()
 {
 	return m_couleur;
 }
@@ -72,5 +72,5 @@ bool Piece::mouvementValide()
 
 char Piece::codePiece()
 {
-	return (couleur() == Couleur::BLANC) ? 'B' : 'N';
+	return (getCouleur() == Couleur::BLANC) ? 'B' : 'N';
 }
