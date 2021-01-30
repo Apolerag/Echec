@@ -2,7 +2,8 @@
 #include "Piece.h"
 #include <iostream>
 
-Reine::Reine(Couleur c) : Piece(3, (c == Couleur::BLANC) ? 0 : 7, c), Tour(3, (c == Couleur::BLANC) ? 0 : 7, c), Fou(3, (c == Couleur::BLANC) ? 0 : 7, c)
+Reine::Reine(Couleur c) : Piece(3, (c == Couleur::BLANC) ? 0 : 7, c), Fou(3, (c == Couleur::BLANC) ? 0 : 7, c), 
+Tour(3, (c == Couleur::BLANC) ? 0 : 7, c)
 {
 }
 
