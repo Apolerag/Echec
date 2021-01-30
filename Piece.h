@@ -7,15 +7,13 @@
 #if !defined Piece_h
 #define Piece_h
 
-#include "Erreur.h"
-
 class Echiquier;
 
 using namespace std;
 enum class Couleur
 {
-	BLANC,
-	NOIR
+    BLANC,
+    NOIR
 };
 
 /**
@@ -24,31 +22,31 @@ enum class Couleur
 class Piece
 {
 protected:
-	int m_x;
-	int m_y;
-	Couleur m_couleur;
+    int m_x;
+    int m_y;
+    Couleur m_couleur;
 
 
-	virtual bool mouvementValide();
+    virtual bool mouvementValide();
 
 
 public:
-	Piece();
-	virtual ~Piece();
-	Piece(const Piece& p);
-	Piece& operator=(const Piece& p);
-	Piece(const int x, const int y, const Couleur c);
+    Piece();
+    virtual ~Piece();
+    Piece(const Piece& p);
+    Piece& operator=(const Piece& p);
+    Piece(const int x, const int y, const Couleur c);
 
-	void init(int x, int y, Couleur c);
-	void deplace(int x, int y);
+    void init(int x, int y, Couleur c);
+    void deplace(int x, int y);
 
-	int getX();
-	int getY();
-	char getColonne();
-	int getLigne();
-	Couleur getCouleur();
+    int getX();
+    int getY();
+    char getColonne();
+    int getLigne();
+    Couleur getCouleur();
 
-	virtual char codePiece();
+    virtual char codePiece();
 };
 
 #endif // !defined Piece_h

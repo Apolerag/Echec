@@ -10,20 +10,20 @@
 
 int Echiquier::conversion(int x, int y)
 {
-	return x * 8 + y;
+    return x * 8 + y;
 }
 
 int Echiquier::conversion(char colonne, int ligne)
 {
-	return conversion(colonne - 'A', ligne - 1);
+    return conversion(colonne - 'A', ligne - 1);
 }
 
 Echiquier::Echiquier()
 {
-	for (int i = 0; i < 64; i++)
-	{
-		m_cases[i] = NULL;
-	}
+    for (int i = 0; i < 64; i++)
+    {
+        m_cases[i] = NULL;
+    }
 }
 
 Echiquier::~Echiquier()
@@ -41,9 +41,9 @@ Echiquier::~Echiquier()
  */
 Piece* Echiquier::getPiece(int x, int y)
 {
-	if (coordonneesValide(x, y))
-		return m_cases[conversion(x, y)];
-	return NULL;
+    if (coordonneesValide(x, y))
+        return m_cases[conversion(x, y)];
+    return NULL;
 }
 
 /**
@@ -57,9 +57,9 @@ Piece* Echiquier::getPiece(int x, int y)
 */
 Piece* Echiquier::getPiece(char colonne, int ligne)
 {
-	if (coordonneesValide(colonne, ligne))
-		return getPiece(colonne - 'A', ligne - 1);
-	return NULL;
+    if (coordonneesValide(colonne, ligne))
+        return getPiece(colonne - 'A', ligne - 1);
+    return NULL;
 }
 
 /**
@@ -72,15 +72,15 @@ Piece* Echiquier::getPiece(char colonne, int ligne)
  */
 bool Echiquier::placer(Piece* p)
 {
-	bool result = false;
-	if (p == NULL) return false;
-	int position = conversion(p->getX(), p->getY());
-	if (coordonneesValide(p->getX(), p->getY()) && m_cases[position] == NULL)
-	{
-		m_cases[position] = p;
-		result = true;
-	}
-	return result;
+    bool result = false;
+    if (p == NULL) return false;
+    int position = conversion(p->getX(), p->getY());
+    if (coordonneesValide(p->getX(), p->getY()) && m_cases[position] == NULL)
+    {
+        m_cases[position] = p;
+        result = true;
+    }
+    return result;
 }
 
 /**
@@ -98,19 +98,19 @@ bool Echiquier::placer(Piece* p)
 
 bool Echiquier::deplacer(Piece* p, int x, int y)
 {
-	bool result = false;
-	int xDepart = p->getX();
-	int yDepart = p->getY();
+    bool result = false;
+    int xDepart = p->getX();
+    int yDepart = p->getY();
 
-	if (coordonneesValide(x, y))
-	{
-		enleverPiece(xDepart, yDepart);
-		p->deplace(x, y);
-		placer(p);
-		result = true;
-	}
+    if (coordonneesValide(x, y))
+    {
+        enleverPiece(xDepart, yDepart);
+        p->deplace(x, y);
+        placer(p);
+        result = true;
+    }
 
-	return result;
+    return result;
 }
 
 /**
@@ -124,13 +124,13 @@ bool Echiquier::deplacer(Piece* p, int x, int y)
  */
 Piece* Echiquier::enleverPiece(int x, int y)
 {
-	Piece* p = NULL;
-	if (coordonneesValide(x, y) && getPiece(x, y) != NULL)
-	{
-		p = m_cases[conversion(x, y)];
-		m_cases[conversion(x, y)] = NULL;
-	}
-	return p;
+    Piece* p = NULL;
+    if (coordonneesValide(x, y) && getPiece(x, y) != NULL)
+    {
+        p = m_cases[conversion(x, y)];
+        m_cases[conversion(x, y)] = NULL;
+    }
+    return p;
 }
 
 /**
@@ -140,27 +140,27 @@ Piece* Echiquier::enleverPiece(int x, int y)
  */
 void Echiquier::Affiche()
 {
-	cout << endl << "  ABCDEFGH" << endl;
-	for (int y = 7; y >= 0; --y)
-	{
-		cout << y+1 << " ";
-		for (int x = 0; x < 8; ++x)
-		{
-			char c;
-			Piece* p = getPiece(x, y);
-			if (p == NULL)
-			{
-				c = ((x + y) % 2) == 0 ? '#' : '.';
-			}
-			else
-			{
-				c = p->codePiece();   //isWhite() ? 'B' : 'N';
-			}
-			cout << c;
-		}
-		cout << " " << y+1 << endl;
-	}
-	cout << "  ABCDEFGH" << endl;
+    cout << endl << "  ABCDEFGH" << endl;
+    for (int y = 7; y >= 0; --y)
+    {
+        cout << y + 1 << " ";
+        for (int x = 0; x < 8; ++x)
+        {
+            char c;
+            Piece* p = getPiece(x, y);
+            if (p == NULL)
+            {
+                c = ((x + y) % 2) == 0 ? '#' : '.';
+            }
+            else
+            {
+                c = p->codePiece();   //isWhite() ? 'B' : 'N';
+            }
+            cout << c;
+        }
+        cout << " " << y + 1 << endl;
+    }
+    cout << "  ABCDEFGH" << endl;
 }
 
 /**
@@ -168,10 +168,10 @@ void Echiquier::Affiche()
 */
 bool Echiquier::coordonneesValide(const int x, const int y)
 {
-	return (x < 0 || x > 7 || y < 0 || y > 7) ? false : true;
+    return (x < 0 || x > 7 || y < 0 || y > 7) ? false : true;
 }
 
 bool Echiquier::coordonneesValide(const char colonne, const int ligne)
 {
-	return coordonneesValide(colonne - 'A', ligne - 1);
+    return coordonneesValide(colonne - 'A', ligne - 1);
 }

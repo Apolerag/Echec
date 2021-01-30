@@ -12,9 +12,9 @@
 class Roi : public Piece
 {
 public:
-	Roi(Couleur c);
-	bool mouvementValide(Echiquier& e, int x, int y);
-	char codePiece();
+    Roi(Couleur c);
+    bool mouvementValide(Echiquier& e, int x, int y);
+    char codePiece();
 };
 
 #endif // !defined Roi_h

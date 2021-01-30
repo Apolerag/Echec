@@ -5,8 +5,8 @@
 class Reine : public Fou, public Tour
 {
 public:
-	Reine(Couleur c);
-	bool mouvementValide(Echiquier& e, int x, int y);
-	char codePiece();
+    Reine(Couleur c);
+    bool mouvementValide(Echiquier& e, int x, int y);
+    char codePiece();
 };
 

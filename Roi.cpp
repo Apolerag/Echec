@@ -6,9 +6,9 @@
 
 Roi::Roi(Couleur c)
 {
-	m_x = 4; // 'E'
-	m_y = (c == Couleur::BLANC) ? 0 : 7; //1 pour roi Blanc, 8 pour roi Noir
-	m_couleur = c;
+    m_x = 4; // 'E'
+    m_y = (c == Couleur::BLANC) ? 0 : 7; //1 pour roi Blanc, 8 pour roi Noir
+    m_couleur = c;
 }
 
 bool Roi::mouvementValide(Echiquier& e, int x, int y)

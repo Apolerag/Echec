@@ -9,68 +9,68 @@ Piece::~Piece()
 {
 }
 
-Piece::Piece(const Piece& p) : m_x(p.m_x), m_y(p.m_y),m_couleur(p.m_couleur)
+Piece::Piece(const Piece& p) : m_x(p.m_x), m_y(p.m_y), m_couleur(p.m_couleur)
 {
 }
 
 Piece& Piece::operator=(const Piece& p)
 {
-	m_x = p.m_x;
-	m_y = p.m_y;
-	m_couleur = p.m_couleur;
-	return *this;
+    m_x = p.m_x;
+    m_y = p.m_y;
+    m_couleur = p.m_couleur;
+    return *this;
 }
 
 Piece::Piece(const int x, const int y, const Couleur c)
 {
-	m_couleur = c;
-	m_x = x;
-	m_y = y;
+    m_couleur = c;
+    m_x = x;
+    m_y = y;
 }
 
 void Piece::init(int x, int y, Couleur c)
 {
-	m_x = x;
-	m_y = y;
-	m_couleur = c;
+    m_x = x;
+    m_y = y;
+    m_couleur = c;
 }
 
 void Piece::deplace(int x, int y)
 {
-	m_x = x;
-	m_y = y;
+    m_x = x;
+    m_y = y;
 }
 int Piece::getX()
 {
-	return m_x;
+    return m_x;
 }
 
 int Piece::getY()
 {
-	return m_y;
+    return m_y;
 }
 
 char Piece::getColonne()
 {
-	return m_x + 'A';
+    return m_x + 'A';
 }
 
 int Piece::getLigne()
 {
-	return m_y + 1;
+    return m_y + 1;
 }
 
 Couleur Piece::getCouleur()
 {
-	return m_couleur;
+    return m_couleur;
 }
 
 bool Piece::mouvementValide()
 {
-	return false;
+    return false;
 }
 
 char Piece::codePiece()
 {
-	return (getCouleur() == Couleur::BLANC) ? 'B' : 'N';
+    return (getCouleur() == Couleur::BLANC) ? 'B' : 'N';
 }

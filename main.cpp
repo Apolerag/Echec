@@ -15,13 +15,13 @@ using namespace std;
 int main()
 {
     Echiquier e;
-    
+
     e.Affiche();
     Tour t(Couleur::NOIR, true);
     e.placer(&t);
     e.Affiche();
 
-    int x, y; 
+    int x, y;
     bool v;
 
     x = 0, y = 7;
@@ -47,7 +47,7 @@ int main()
     e.Affiche();
 
 
-    x =7, y = 0;
+    x = 7, y = 0;
     v = t.mouvementValide(e, x, y); //H1
 
     if (v)
@@ -71,7 +71,7 @@ int main()
     e.Affiche();
 
     cout << t.codePiece() << endl;
-    cout << e.conversion('A',7) << endl;
+    cout << e.conversion('A', 7) << endl;
 
     Piece r = Roi(Couleur::BLANC);
 }
