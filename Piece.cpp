@@ -68,7 +68,7 @@ bool Piece::getCouleur()
     return m_couleur;
 }
 
-bool Piece::mouvementValide()
+bool Piece::mouvementValide(Echiquier& e, int x, int y)
 {
     return false;
 }

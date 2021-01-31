@@ -27,8 +27,6 @@ protected:
     bool m_couleur;
 
 
-    virtual bool mouvementValide();
-
 
 public:
     Piece();
@@ -47,6 +45,7 @@ public:
     bool getCouleur();
 
     virtual char codePiece();
+    virtual bool mouvementValide(Echiquier& e, int x, int y);
 };
 
 #endif // !defined Piece_h
