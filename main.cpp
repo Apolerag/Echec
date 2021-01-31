@@ -12,57 +12,14 @@
 #include "Reine.h"
 #include "Pion.h"
 #include "Cavalier.h"
+#include "Partie.h"
 
 using namespace std;
 
 int main()
 {
-    Echiquier e;
-
-    Reine reine = Reine('D', 1, BLANC);
-    e.placer(&reine);
-    e.Affiche();
-
-    cerr << reine.getColonne() << " " << reine.getLigne() << endl;
-
-    Tour tour('A', 1, BLANC);
-    e.placer(&tour);
-    Tour tour2('A', 8, NOIR);
-    e.placer(&tour2);
-
-    Fou fou('C', 1, BLANC);
-    e.placer(&fou);
-
-    Roi roi = Roi('E', 1, BLANC);
-    e.placer(&roi);
-
-    Pion pion = Pion('A', 2, BLANC);
-    e.placer(&pion);
-
-    Cavalier cavalier = Cavalier('B', 1, BLANC);
-    e.placer(&cavalier);
-
-    e.Affiche();
-
-    int x = 2, y = 2;
-    bool v;
-    v = cavalier.mouvementValide(e, x, y);
-    if (v)
-    {
-        e.enleverPiece(cavalier.getX(), cavalier.getY());
-        cavalier.deplace(x, y);
-        e.deplacer(&cavalier, x, y);
-    }
-
-    x = 4, y = 4;
-    v = cavalier.mouvementValide(e, x, y);
-    if (v)
-    {
-        e.enleverPiece(cavalier.getX(), cavalier.getY());
-        cavalier.deplace(x, y);
-        e.deplacer(&cavalier, x, y);
-    }
-    e.Affiche();
+    Partie p;
+    p.jouerPartie();
 
 
     return 0;

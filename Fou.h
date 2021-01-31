@@ -6,6 +6,9 @@
  * @file Fou.h
  */
 
+#if !defined Fou_h
+#define Fou_h
+
 #include "Piece.h"
 
 class Fou : public virtual Piece
@@ -17,3 +20,4 @@ public:
     char codePiece();
 };
 
+#endif // !defined Fou_h

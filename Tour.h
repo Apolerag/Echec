@@ -6,6 +6,9 @@
  * @file Tour.h
  */
 
+#if !defined Tour_h
+#define Tour_h
+
 #include "Piece.h"
 
 class Tour : public virtual Piece
@@ -17,3 +20,4 @@ public:
     char codePiece();
 };
 
+#endif // !defined Tour_h

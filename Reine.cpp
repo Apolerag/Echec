@@ -1,3 +1,9 @@
+/**
+ * Mise en oeuvre de Reine.h
+ *
+ * @file Reine.cpp
+ */
+
 #include "Reine.h"
 #include "Piece.h"
 #include <iostream>
@@ -17,7 +23,6 @@ bool Reine::mouvementValide(Echiquier& e, int x, int y)
 
     if (Tour::mouvementValide(e, x, y) || Fou::mouvementValide(e, x, y))
     {
-        cout << "\nLe mouvement de la Reine est valide." << endl;
         mouvementOk = true;
     }
 

@@ -6,6 +6,9 @@
  * @file Reine.h
  */
 
+#if !defined Reine_h
+#define Reine_h
+
 #include "Fou.h"
 #include "Tour.h"
 
@@ -18,3 +21,4 @@ public:
     char codePiece();
 };
 
+#endif // !defined Reine_h

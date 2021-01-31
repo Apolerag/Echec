@@ -1,3 +1,9 @@
+/**
+ * Mise en oeuvre de Piece.h
+ *
+ * @file Piece.cpp
+ */
+
 #include "Piece.h"
 
 Piece::Piece() : m_x(0), m_y(0), m_couleur(BLANC)

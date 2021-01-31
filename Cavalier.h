@@ -6,6 +6,9 @@
  * @file Cavalier.h
  */
 
+#if !defined Cavalier_h
+#define Cavalier_h
+
 #include "Piece.h"
 class Cavalier : public Piece
 {
@@ -16,3 +19,4 @@ public:
     char codePiece();
 };
 
+#endif // !defined Cavalier_h

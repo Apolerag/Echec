@@ -1,3 +1,9 @@
+/**
+ * Mise en oeuvre de Roi.h
+ *
+ * @file Roi.cpp
+ */
+
 #include "Roi.h"
 #include "Echiquier.h"
 #include "Piece.h"
@@ -24,13 +30,11 @@ bool Roi::mouvementValide(Echiquier& e, int x, int y)
             if (e.getPiece(x, y)->getCouleur() != m_couleur)   //Si pièce couleur joueur adverse alors on l'enlève !
             {
                 e.enleverPiece(x, y);
-                cout << "Le mouvement du Roi est valide" << endl;
                 estValide = true;
             }
         }
         else
         {
-            cout << "Le mouvement du Roi est valide" << endl;
             estValide = true;
         }
     }

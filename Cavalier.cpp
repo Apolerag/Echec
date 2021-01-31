@@ -1,3 +1,9 @@
+/**
+ * Mise en oeuvre de Cavalier.h
+ *
+ * @file Cavalier.cpp
+ */
+
 #include "Cavalier.h"
 #include "Echiquier.h"
 #include <iostream>
@@ -20,13 +26,11 @@ bool Cavalier::mouvementValide(Echiquier& e, int x, int y)
             if (e.getPiece(x, y)->getCouleur() != m_couleur)
             {
                 e.enleverPiece(x, y);
-                cout << "Le mouvement du Cavalier est valide." << endl;
                 estValide = true;
             }
         }
         else
         {
-            cout << "Le mouvement du Cavalier est valide." << endl;
             estValide = true;
         }
     }

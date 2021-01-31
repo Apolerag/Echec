@@ -1,6 +1,15 @@
+/**
+ * Mise en oeuvre de Pion.h
+ *
+ * @file Pion.cpp
+ */
+
 #include "Pion.h"
 #include "Echiquier.h"
 #include <iostream>
+
+Pion::Pion() : Piece()
+{}
 
 Pion::Pion(const int x, const int y, const bool c) : Piece(x, y, c)
 {}

@@ -1,3 +1,9 @@
+/**
+ * Mise en oeuvre de Fou.h
+ *
+ * @file Fou.cpp
+ */
+
 #include "Fou.h"
 #include <iostream>
 #include "Echiquier.h"
@@ -39,14 +45,12 @@ bool Fou::mouvementValide(Echiquier& e, int x, int y)
                 else if (xDepart == x && yDepart == y && e.getPiece(x, y)->getCouleur() != this->getCouleur())   //Si pièce couleur joueur adverse alors on l'enlève !
                 {
                     e.enleverPiece(x, y);
-                    cout << "Le mouvement du Fou est valide : déplacement" << endl;
                     estValide = true;
                     break;
                 }
             }
             else if (xDepart == x && yDepart == y)
             {
-                cout << "Le mouvement du Fou est valide : déplacement" << endl;
                 estValide = true;
                 break;
             }

@@ -1,3 +1,9 @@
+/**
+ * Mise en oeuvre de Tour.h
+ *
+ * @file Tour.cpp
+ */
+
 #include "Tour.h"
 #include "Echiquier.h"
 #include <iostream>
@@ -47,14 +53,12 @@ bool Tour::mouvementValide(Echiquier& e, int x, int y)
                 else if (xDepart == x && yDepart == y && e.getPiece(x, y)->getCouleur() != m_couleur)   //Si pièce couleur joueur adverse alors on l'enlève !
                 {
                     e.enleverPiece(x, y);
-                    cout << "Le mouvement de la Tour est valide : déplacement" << endl;
                     estValide = true;
                     break;
                 }
             }
             else if (xDepart == x && yDepart == y)
             {
-                cout << "Le mouvement de la Tour est valide : déplacement" << endl;
                 estValide = true;
                 break;
             }
