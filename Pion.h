@@ -7,8 +7,7 @@
  */
 
 #include "Piece.h"
-class Pion :
-    public Piece
+class Pion : public Piece
 {
 public:
     Pion(const int x, const int y, const bool c);

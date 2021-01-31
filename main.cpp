@@ -11,6 +11,7 @@
 #include "Tour.h"
 #include "Reine.h"
 #include "Pion.h"
+#include "Cavalier.h"
 
 using namespace std;
 
@@ -38,29 +39,29 @@ int main()
     Pion pion = Pion('A', 2, BLANC);
     e.placer(&pion);
 
-    Pion pionN = Pion('B', 3, BLANC);
-    e.placer(&pionN);
+    Cavalier cavalier = Cavalier('B', 1, BLANC);
+    e.placer(&cavalier);
 
     e.Affiche();
 
-    int x = 1, y = 2;
+    int x = 2, y = 2;
     bool v;
-    v = pion.mouvementValide(e, x, y);
+    v = cavalier.mouvementValide(e, x, y);
     if (v)
     {
-        e.enleverPiece(pion.getX(), pion.getY());
-        pion.deplace(x, y);
-        e.deplacer(&pion, x, y);
+        e.enleverPiece(cavalier.getX(), cavalier.getY());
+        cavalier.deplace(x, y);
+        e.deplacer(&cavalier, x, y);
     }
-    /*
-    x = 7, y = 5;
-    v = fou.mouvementValide(e, x, y);
+
+    x = 4, y = 4;
+    v = cavalier.mouvementValide(e, x, y);
     if (v)
     {
-        e.enleverPiece(fou.getX(), fou.getY());
-        fou.deplace(x, y);
-        e.deplacer(&fou, x, y);
-    }*/
+        e.enleverPiece(cavalier.getX(), cavalier.getY());
+        cavalier.deplace(x, y);
+        e.deplacer(&cavalier, x, y);
+    }
     e.Affiche();
 
 
