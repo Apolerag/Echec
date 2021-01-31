@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * Header de Piece.cpp
  *
@@ -7,14 +9,11 @@
 #if !defined Piece_h
 #define Piece_h
 
+#include "Couleur.h"
+
 class Echiquier;
 
 using namespace std;
-enum class Couleur
-{
-    BLANC,
-    NOIR
-};
 
 /**
  * Declaration d'une classe modélisant une piece de jeu d'echec.
@@ -24,7 +23,7 @@ class Piece
 protected:
     int m_x;
     int m_y;
-    Couleur m_couleur;
+    bool m_couleur;
 
 
     virtual bool mouvementValide();
@@ -35,16 +34,16 @@ public:
     virtual ~Piece();
     Piece(const Piece& p);
     Piece& operator=(const Piece& p);
-    Piece(const int x, const int y, const Couleur c);
+    Piece(const int x, const int y, const bool c);
 
-    void init(int x, int y, Couleur c);
+    void init(int x, int y, bool c);
     void deplace(int x, int y);
 
     int getX();
     int getY();
     char getColonne();
     int getLigne();
-    Couleur getCouleur();
+    bool getCouleur();
 
     virtual char codePiece();
 };

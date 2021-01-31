@@ -2,7 +2,11 @@
 #include "Echiquier.h"
 #include <iostream>
 
-Tour::Tour(Couleur c, bool left) : Piece(left ? 0 : 7, (c == Couleur::BLANC ? 0 : 7), c)
+Tour::Tour(const int x, const int y, const bool c): Piece(x,y,c)
+{
+}
+
+Tour::Tour(const char colonne, const int ligne, const bool c) : Piece(colonne-'A', ligne-1, c)
 {
 }
 
@@ -73,9 +77,5 @@ bool Tour::mouvementValide(Echiquier& e, int x, int y)
 
 char Tour::codePiece()
 {
-    return (m_couleur == Couleur::BLANC) ? 'T' : 't';
-}
-
-Tour::Tour(const int x, const int y, const Couleur c): Piece(x,y,c)
-{
+    return (m_couleur == BLANC) ? 'T' : 't';
 }

@@ -4,11 +4,12 @@
 #include <cmath>
 #include <iostream>
 
-Roi::Roi(Couleur c)
+Roi::Roi(const int x, const int y, const bool c) :Piece(x, y, c)
 {
-    m_x = 4; // 'E'
-    m_y = (c == Couleur::BLANC) ? 0 : 7; //1 pour roi Blanc, 8 pour roi Noir
-    m_couleur = c;
+}
+
+Roi::Roi(const char colonne, const int ligne, const bool c) : Piece(colonne-'A', ligne-1, c)
+{
 }
 
 bool Roi::mouvementValide(Echiquier& e, int x, int y)
@@ -39,5 +40,5 @@ bool Roi::mouvementValide(Echiquier& e, int x, int y)
 
 char Roi::codePiece()
 {
-    return (m_couleur == Couleur::BLANC) ? 'R' : 'r';
+    return (m_couleur == BLANC) ? 'R' : 'r';
 }

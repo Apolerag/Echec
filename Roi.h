@@ -12,7 +12,8 @@
 class Roi : public Piece
 {
 public:
-    Roi(Couleur c);
+    Roi(const int x, const int y, const bool c);
+    Roi(const char colonne, const int ligne, const bool c);
     bool mouvementValide(Echiquier& e, int x, int y);
     char codePiece();
 };

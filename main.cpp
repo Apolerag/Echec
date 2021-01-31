@@ -17,77 +17,22 @@ int main()
 {
     Echiquier e;
 
-    e.Affiche();
-    Reine *reine = new Reine(Couleur::NOIR);
-    e.placer(reine);
-    e.Affiche();
-
-    cerr << reine->Piece::getColonne() << " " << reine->getLigne() << endl;
-    
-    int x, y;
-    bool v;
-
-    x = 0, y = 7;
-    v = reine->mouvementValide(e, x, y); //A8
-
-    if (v)
-    {
-        e.enleverPiece(reine->getX(), reine->getY());
-        reine->Fou::deplace(x, y);
-        e.deplacer(reine, x, y);
-    }
-    e.Affiche();
-    
-    x = 7, y = 7;
-    v = reine->mouvementValide(e, x, y); //H8
-
-    if (v)
-    {
-        e.enleverPiece(reine->getX(), reine->getY());
-        reine->Fou::deplace(x, y);
-        e.deplacer(reine, x, y);
-    }
+    Reine reine = Reine('D', 1, BLANC);
+    e.placer(&reine);
     e.Affiche();
 
+    cerr << reine.getColonne() << " " << reine.getLigne() << endl;
 
-    x = 7, y = 0;
-    v = reine->mouvementValide(e, x, y); //H1
+    Tour tour('A', 1, BLANC);
+    e.placer(&tour);
 
-    if (v)
-    {
-        e.enleverPiece(reine->getX(), reine->getY());
-        reine->Fou::deplace(x, y);
-        e.deplacer(reine, x, y);
-    }
+    Fou fou('C', 1, BLANC);
+    e.placer(&fou);
+
+
+    Roi roi = Roi('E', 1, BLANC);
+    e.placer(&roi);
     e.Affiche();
-
-
-    x = 0, y = 0;
-    v = reine->mouvementValide(e, x, y); //A1
-
-    if (v)
-    {
-        e.enleverPiece(reine->getX(), reine->getY());
-        reine->Fou::deplace(x, y);
-        e.deplacer(reine, x, y);
-    }
-    e.Affiche();
-
-    x = 4, y = 4;
-    v = reine->mouvementValide(e, x, y); //E5
-
-    if (v)
-    {
-        e.enleverPiece(reine->getX(), reine->getY());
-        reine->Fou::deplace(x, y);
-        e.deplacer(reine, x, y);
-    }
-    e.Affiche();
-
-
-    Piece r = Roi(Couleur::BLANC);
-
-    delete reine;
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

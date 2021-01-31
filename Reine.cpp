@@ -2,8 +2,12 @@
 #include "Piece.h"
 #include <iostream>
 
-Reine::Reine(Couleur c) : Piece(3, (c == Couleur::BLANC) ? 0 : 7, c), Fou(3, (c == Couleur::BLANC) ? 0 : 7, c), 
-Tour(3, (c == Couleur::BLANC) ? 0 : 7, c)
+Reine::Reine(const int x, const int y, const bool c) : Piece(x, y, c), Fou(x,y,c), Tour(x,y,c)
+{
+}
+
+Reine::Reine(const char colonne, const int ligne, const bool c): Piece(colonne-'A',ligne-1,c), Fou(colonne - 'A', ligne - 1, c),
+                                                  Tour(colonne - 'A', ligne - 1, c)
 {
 }
 
@@ -22,6 +26,6 @@ bool Reine::mouvementValide(Echiquier& e, int x, int y)
 
 char Reine::codePiece()
 {
-    return (Piece::m_couleur == Couleur::BLANC) ? 'Q' : 'q';
+    return (Piece::m_couleur == BLANC) ? 'Q' : 'q';
 }
 

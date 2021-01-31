@@ -2,7 +2,11 @@
 #include <iostream>
 #include "Echiquier.h"
 
-Fou::Fou(Couleur c, bool left) : Piece(left ? 2 : 5, (c == Couleur::BLANC) ? 0 : 7, c)
+Fou::Fou(const int x, const int y, const bool c) : Piece(x, y, c)
+{
+}
+
+Fou::Fou(const char colonne, const int ligne, const bool c) : Piece(colonne - 'A', ligne - 1, c)
 {
 }
 
@@ -10,7 +14,7 @@ bool Fou::mouvementValide(Echiquier& e, int x, int y)
 {
     int xDepart = this->getX(); //Récupération du départ de la pièce
     int yDepart = this->getY();
-    Couleur couleurFou = this->getCouleur();
+    bool couleurFou = this->getCouleur();
     bool estValide = false;
     int ecartX = x - xDepart;
     int ecartY = y - yDepart;
@@ -51,9 +55,5 @@ bool Fou::mouvementValide(Echiquier& e, int x, int y)
 char
 Fou::codePiece()
 {
-    return (m_couleur == Couleur::BLANC) ? 'F' : 'f';
-}
-
-Fou::Fou(const int x, const int y, const Couleur c) : Piece(x, y, c)
-{
+    return (m_couleur == BLANC) ? 'F' : 'f';
 }

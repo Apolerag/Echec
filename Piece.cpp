@@ -1,7 +1,6 @@
 #include "Piece.h"
 
-
-Piece::Piece() : m_x(0), m_y(0), m_couleur(Couleur::BLANC)
+Piece::Piece() : m_x(0), m_y(0), m_couleur(BLANC)
 {
 }
 
@@ -21,14 +20,11 @@ Piece& Piece::operator=(const Piece& p)
     return *this;
 }
 
-Piece::Piece(const int x, const int y, const Couleur c)
+Piece::Piece(const int x, const int y, const bool c) : m_x(x), m_y(y), m_couleur(c)
 {
-    m_couleur = c;
-    m_x = x;
-    m_y = y;
 }
 
-void Piece::init(int x, int y, Couleur c)
+void Piece::init(int x, int y, bool c)
 {
     m_x = x;
     m_y = y;
@@ -40,6 +36,7 @@ void Piece::deplace(int x, int y)
     m_x = x;
     m_y = y;
 }
+
 int Piece::getX()
 {
     return m_x;
@@ -60,7 +57,7 @@ int Piece::getLigne()
     return m_y + 1;
 }
 
-Couleur Piece::getCouleur()
+bool Piece::getCouleur()
 {
     return m_couleur;
 }
@@ -72,5 +69,5 @@ bool Piece::mouvementValide()
 
 char Piece::codePiece()
 {
-    return (getCouleur() == Couleur::BLANC) ? 'B' : 'N';
+    return (m_couleur == BLANC) ? 'B' : 'N';
 }
