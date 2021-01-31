@@ -16,7 +16,8 @@ class Echiquier;
 using namespace std;
 
 /**
- * Declaration d'une classe modélisant une piece de jeu d'echec.
+ * @class Piece
+ * Declaration d'une classe modelisant une piece de jeu d'echec.
  */
 class Piece
 {

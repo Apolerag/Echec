@@ -52,7 +52,7 @@ bool Tour::mouvementValide(Echiquier& e, int x, int y)
                     break;
                 }
             }
-            else if (xDepart == x && yDepart == y && estValide == false)
+            else if (xDepart == x && yDepart == y)
             {
                 cout << "Le mouvement de la Tour est valide : déplacement" << endl;
                 estValide = true;

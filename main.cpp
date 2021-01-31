@@ -10,6 +10,7 @@
 #include "Fou.h"
 #include "Tour.h"
 #include "Reine.h"
+#include "Pion.h"
 
 using namespace std;
 
@@ -31,21 +32,27 @@ int main()
     Fou fou('C', 1, BLANC);
     e.placer(&fou);
 
-
     Roi roi = Roi('E', 1, BLANC);
     e.placer(&roi);
+
+    Pion pion = Pion('A', 2, BLANC);
+    e.placer(&pion);
+
+    Pion pionN = Pion('B', 3, BLANC);
+    e.placer(&pionN);
+
     e.Affiche();
 
-    int x = 3, y = 1;
+    int x = 1, y = 2;
     bool v;
-    v = reine.mouvementValide(e, x, y);
+    v = pion.mouvementValide(e, x, y);
     if (v)
     {
-        e.enleverPiece(reine.getX(), reine.getY());
-        reine.deplace(x, y);
-        e.deplacer(&reine, x, y);
+        e.enleverPiece(pion.getX(), pion.getY());
+        pion.deplace(x, y);
+        e.deplacer(&pion, x, y);
     }
-
+    /*
     x = 7, y = 5;
     v = fou.mouvementValide(e, x, y);
     if (v)
@@ -53,7 +60,7 @@ int main()
         e.enleverPiece(fou.getX(), fou.getY());
         fou.deplace(x, y);
         e.deplacer(&fou, x, y);
-    }
+    }*/
     e.Affiche();
 
 

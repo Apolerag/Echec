@@ -44,7 +44,7 @@ bool Fou::mouvementValide(Echiquier& e, int x, int y)
                     break;
                 }
             }
-            else if (xDepart == x && yDepart == y && estValide == false)
+            else if (xDepart == x && yDepart == y)
             {
                 cout << "Le mouvement du Fou est valide : déplacement" << endl;
                 estValide = true;
