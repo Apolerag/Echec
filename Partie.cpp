@@ -179,7 +179,7 @@ void Partie::jouerPartie()
 
     while (partieFinie == false)
     {
-        bool mouvementValide = false;
+        mouvementValide = false;
         enEchec = 0;
         e.Affiche();    //on affiche le plateau à chaque nouvelle action
 
