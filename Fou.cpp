@@ -14,7 +14,6 @@ bool Fou::mouvementValide(Echiquier& e, int x, int y)
 {
     int xDepart = this->getX(); //Récupération du départ de la pièce
     int yDepart = this->getY();
-    bool couleurFou = this->getCouleur();
     bool estValide = false;
     int ecartX = x - xDepart;
     int ecartY = y - yDepart;
@@ -26,24 +25,30 @@ bool Fou::mouvementValide(Echiquier& e, int x, int y)
     if (ecartX == ecartY || ecartX == -ecartY)   //pour aller en diagonale
     {
 
-        while (xDepart != x && yDepart != y) //ET ou OU
+        while (xDepart != x && yDepart != y)
         {
             xDepart += pasX;
             yDepart += pasY;
 
-            if (e.getPiece(yDepart, yDepart) != NULL)
+            if (e.getPiece(xDepart, yDepart) != NULL)
             {
-                if (xDepart == x && yDepart == y && e.getPiece(x, y)->getCouleur() != couleurFou)   //Si pièce couleur joueur adverse alors on l'enlève !
+                if (xDepart != x || yDepart != y) // il y a une piece sur le chemin
+                {
+                    break;
+                }
+                else if (xDepart == x && yDepart == y && e.getPiece(x, y)->getCouleur() != this->getCouleur())   //Si pièce couleur joueur adverse alors on l'enlève !
                 {
                     e.enleverPiece(x, y);
                     cout << "Le mouvement du Fou est valide : déplacement" << endl;
                     estValide = true;
+                    break;
                 }
             }
             else if (xDepart == x && yDepart == y && estValide == false)
             {
                 cout << "Le mouvement du Fou est valide : déplacement" << endl;
                 estValide = true;
+                break;
             }
 
         }

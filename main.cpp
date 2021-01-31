@@ -25,6 +25,8 @@ int main()
 
     Tour tour('A', 1, BLANC);
     e.placer(&tour);
+    Tour tour2('A', 8, NOIR);
+    e.placer(&tour2);
 
     Fou fou('C', 1, BLANC);
     e.placer(&fou);
@@ -33,6 +35,29 @@ int main()
     Roi roi = Roi('E', 1, BLANC);
     e.placer(&roi);
     e.Affiche();
+
+    int x = 3, y = 1;
+    bool v;
+    v = reine.mouvementValide(e, x, y);
+    if (v)
+    {
+        e.enleverPiece(reine.getX(), reine.getY());
+        reine.deplace(x, y);
+        e.deplacer(&reine, x, y);
+    }
+
+    x = 7, y = 5;
+    v = fou.mouvementValide(e, x, y);
+    if (v)
+    {
+        e.enleverPiece(fou.getX(), fou.getY());
+        fou.deplace(x, y);
+        e.deplacer(&fou, x, y);
+    }
+    e.Affiche();
+
+
+    return 0;
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

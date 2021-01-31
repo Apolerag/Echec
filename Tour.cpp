@@ -2,74 +2,64 @@
 #include "Echiquier.h"
 #include <iostream>
 
-Tour::Tour(const int x, const int y, const bool c): Piece(x,y,c)
+Tour::Tour(const int x, const int y, const bool c) : Piece(x, y, c)
 {
 }
 
-Tour::Tour(const char colonne, const int ligne, const bool c) : Piece(colonne-'A', ligne-1, c)
+Tour::Tour(const char colonne, const int ligne, const bool c) : Piece(colonne - 'A', ligne - 1, c)
 {
 }
 
 bool Tour::mouvementValide(Echiquier& e, int x, int y)
 {
+    int xDepart = this->getX(); //Récupération du départ de la pièce
+    int yDepart = this->getY();
     bool estValide = false;
-    int i = 0;  //pour indice de boucle
+
+    int pasX = 0;// (ecartX > 0) ? 1 : -1;
+    int pasY = 0;// (ecartY > 0) ? 1 : -1;
+
+    if (xDepart == x && yDepart != y)
+    {
+        pasY = (m_y < y) ? 1 : -1;
+    }
+
+    if (yDepart == y && xDepart != x)
+    {
+        pasX = (m_x < x) ? 1 : -1;
+    }
 
 
     //vérifier si pièce sur chemin et vérifier si pièce sur case d'arrivée et sa couleur
-    if (x == m_x && y != m_y && y >= 0 && y <= 7)
+    if ((pasX != 0 && pasY == 0) || (pasX == 0 && pasY != 0))
     {
-        int pasY = (m_y < y) ? 1 : -1;
-        i = m_y;
-
-        do
+        while ((xDepart == x && yDepart == y) == false)
         {
-            i += pasY;
-            if (e.getPiece(x, i) != NULL)
+            xDepart += pasX;
+            yDepart += pasY;
+
+            if (e.getPiece(xDepart, yDepart) != NULL)
             {
-                if (i == y && e.getPiece(x, i)->getCouleur() != m_couleur)   //Si pièce couleur joueur adverse alors on l'enlève !
+                if (xDepart != x || yDepart != y) // il y a une piece sur le chemin
+                {
+                    break;
+                }
+                else if (xDepart == x && yDepart == y && e.getPiece(x, y)->getCouleur() != m_couleur)   //Si pièce couleur joueur adverse alors on l'enlève !
                 {
                     e.enleverPiece(x, y);
-                    cout << "Le mouvement de la Tour est valide : deplacement colonne" << endl;
+                    cout << "Le mouvement de la Tour est valide : déplacement" << endl;
                     estValide = true;
                     break;
                 }
             }
-            else if (i == y)
+            else if (xDepart == x && yDepart == y && estValide == false)
             {
-                cout << "Le mouvement de la Tour est valide : deplacement colonne" << endl;
+                cout << "Le mouvement de la Tour est valide : déplacement" << endl;
                 estValide = true;
                 break;
             }
+        }
 
-        } while (i != y);
-
-    }
-    else if (y == m_y && x != m_x && x >= 0 && x <= 7)
-    {
-        int pasX = (m_x < x) ? 1 : -1;
-        i = m_x;
-
-        do
-        {
-            i += pasX;
-            if (e.getPiece(i, y) != NULL)
-            {
-                if (i == x && e.getPiece(i, y)->getCouleur() != m_couleur)   //Si pièce couleur joueur adverse alors on l'enlève !
-                {
-                    e.enleverPiece(x, y);
-                    cout << "Le mouvement de la Tour est valide : deplacement Droit" << endl;
-                    estValide = true;
-                    break;
-                }
-            }
-            else if (i == x)
-            {
-                cout << "Le mouvement de la Tour est valide : deplacement ligne" << endl;
-                estValide = true;
-                break;
-            }
-        } while (i != x);
     }
 
     return estValide;
