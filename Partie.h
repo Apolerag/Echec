@@ -15,12 +15,12 @@
 class Partie
 {
 protected:
-    Echiquier e;
-    bool joueurActuel;
-    vector<Piece*> PiecesBlanche;
-    vector<Piece*> PiecesNoires;
-    Piece* RoiBlanc;
-    Piece* RoiNoir;
+    Echiquier m_e;
+    bool m_joueurActuel;
+    vector<Piece*> m_PiecesBlanche;
+    vector<Piece*> m_PiecesNoires;
+    Piece* m_RoiBlanc;
+    Piece* m_RoiNoir;
 
 public:
     Partie();

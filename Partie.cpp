@@ -15,7 +15,7 @@
 #include "Tour.h"
 #include "Pion.h"
 
-Partie::Partie() :e(), joueurActuel(BLANC)//, //PiecesBlanche(NULL), PiecesNoires(NULL), RoiBlanc(NULL),RoiNoir(NULL)
+Partie::Partie() :m_e(), m_joueurActuel(BLANC), m_PiecesBlanche(), m_PiecesNoires(), m_RoiBlanc(NULL),m_RoiNoir(NULL)
 {
 }
 
@@ -27,15 +27,26 @@ void Partie::getCoordonnees(int& x, int& y)
 {
     char colonne = 0;
     int ligne = 0;
+    string coordonnees = "";
     while (true)
     {
-        cout << "\nX = ";
-        cin >> colonne;
-        cout << "\nY = ";
-        cin >> ligne;
+        while (true)
+        {
+            cin >> coordonnees;
+            if (coordonnees.length() != 2)
+            {
+                cout << "Coordonnees incorrectes. Ressaisissez les valeurs :\n";
+            }
+            else
+            {
+                colonne = coordonnees[0];
+                ligne = coordonnees[1];
+                break;
+            }
+        }
 
         x = colonne - 'A';
-        y = ligne - 1;
+        y = ligne - '1';
 
         if ((x >= 0) && (x <= 7) && (y >= 0) && (y <= 7))
         {
@@ -43,7 +54,7 @@ void Partie::getCoordonnees(int& x, int& y)
         }
         else
         {
-            cout << "\nCoordonnees incorrectes. Ressaisissez les valeurs :";
+            cout << "Coordonnees incorrectes. Ressaisissez les valeurs :\n";
         }
     }
 }
@@ -52,7 +63,7 @@ void Partie::getCoordonnees(int& x, int& y)
 int Partie::Echec()
 {
     int enEchec = 0;
-    Piece* RoiAdverse = NULL;
+    Piece* roiAdverse = NULL;
     vector<Piece*> pieceJoueur;
 
     //RECUPERER COORDONNEES DES 2 ROIS
@@ -60,19 +71,11 @@ int Partie::Echec()
     {
         for (int j = 0; j < 8; j++)
         {
-            if (e.getPiece(i, j) != NULL)
+            if (m_e.getPiece(i, j) != NULL)
             {
-                Piece* p = e.getPiece(i, j);
+                Piece* p = m_e.getPiece(i, j);
                 //On vérifier si la pièce est un roi, si oui on récupère ses coordonnées
-                if (p->codePiece() == 'R' && joueurActuel == NOIR)
-                {
-                    RoiAdverse = p;
-                }
-                else if (p->codePiece() == 'r' && joueurActuel == BLANC)
-                {
-                    RoiAdverse = p;
-                }
-                else if (p->getCouleur() == joueurActuel)
+                if (p->getCouleur() == m_joueurActuel)
                 {
                     pieceJoueur.push_back(p);
                 }
@@ -81,12 +84,15 @@ int Partie::Echec()
         }
     }
 
+    roiAdverse = (m_joueurActuel == NOIR) ? m_RoiBlanc : m_RoiNoir;
+
+
     //  VERIFIER SI PIECE JOUEUR ACTUEL PEUT SE DEPLACER SUR ROI ADVERSAIRE
     for (unsigned int i = 0; i < pieceJoueur.size(); i++)
     {
         Piece* p = pieceJoueur[i];
 
-        if (p->mouvementValide(e, RoiAdverse->getX(), RoiAdverse->getY()) != false)
+        if (p->mouvementValide(m_e, roiAdverse->getX(), roiAdverse->getY()) != false)
         {
             enEchec = 1;
             break;
@@ -115,7 +121,7 @@ void Partie::jouerPartie()
         /**JoueurBlanc jb = JoueurBlanc();
         JoueurNoir jn = JoueurNoir();
         Echiquier e = Echiquier();**/
-    joueurActuel = true;    //true = jb, false = jn
+    m_joueurActuel = true;    //true = jb, false = jn
     bool mouvementValide = false;
     int enEchec = 0;
     bool partieFinie = false;
@@ -152,28 +158,31 @@ void Partie::jouerPartie()
     }
 
     /**PLACEMENT PIECES**/
-    e.placer(&rb);  //ROIS
-    e.placer(&rn);
-    e.placer(&db);  //REINES
-    e.placer(&dn);
-    e.placer(&tb1);  //TOURS
-    e.placer(&tn1);
-    e.placer(&tb2);
-    e.placer(&tn2);
-    e.placer(&fb1);  //FOUS
-    e.placer(&fn1);
-    e.placer(&fb2);
-    e.placer(&fn2);
-    e.placer(&cb1);  //CAVALIERS
-    e.placer(&cn1);
-    e.placer(&cb2);
-    e.placer(&cn2);
+    m_e.placer(&rb);  //ROIS
+    m_e.placer(&rn);
+    m_RoiBlanc = &rb;
+    m_RoiNoir = &rn;
+
+    m_e.placer(&db);  //REINES
+    m_e.placer(&dn);
+    m_e.placer(&tb1);  //TOURS
+    m_e.placer(&tn1);
+    m_e.placer(&tb2);
+    m_e.placer(&tn2);
+    m_e.placer(&fb1);  //FOUS
+    m_e.placer(&fn1);
+    m_e.placer(&fb2);
+    m_e.placer(&fn2);
+    m_e.placer(&cb1);  //CAVALIERS
+    m_e.placer(&cn1);
+    m_e.placer(&cb2);
+    m_e.placer(&cn2);
 
 
     for (int i = 0; i < 8; i++)
     {
-        e.placer(&PionBlanc[i]);
-        e.placer(&PionNoir[i]);
+        m_e.placer(&PionBlanc[i]);
+        m_e.placer(&PionNoir[i]);
     }
 
 
@@ -181,7 +190,7 @@ void Partie::jouerPartie()
     {
         mouvementValide = false;
         enEchec = 0;
-        e.Affiche();    //on affiche le plateau à chaque nouvelle action
+        m_e.Affiche();    //on affiche le plateau à chaque nouvelle action
 
         if (Pat() != false)
         {
@@ -190,7 +199,7 @@ void Partie::jouerPartie()
             break;
         }
 
-        if (joueurActuel == BLANC)
+        if (m_joueurActuel == BLANC)
         {
             cout << "\nAu blanc de jouer." << endl;
         }
@@ -208,11 +217,11 @@ void Partie::jouerPartie()
             cout << "Choisissez les coordonnees de la case d'arrivee." << endl;
             getCoordonnees(xArrivee, yArrivee);
 
-            if (e.getPiece(xDepart, yDepart)->mouvementValide(e, xArrivee, yArrivee))
+            if (m_e.getPiece(xDepart, yDepart)->mouvementValide(m_e, xArrivee, yArrivee))
             {
                 mouvementValide = true;
 
-                e.deplacer(e.getPiece(xDepart, yDepart), xArrivee, yArrivee);
+                m_e.deplacer(m_e.getPiece(xDepart, yDepart), xArrivee, yArrivee);
             }
 
             enEchec = Echec();
@@ -224,7 +233,7 @@ void Partie::jouerPartie()
             else if (enEchec == 2)
             {
                 cout << "Echec et Mat ! " << endl;
-                if (joueurActuel == BLANC)
+                if (m_joueurActuel == BLANC)
                 {
                     cout << "Les Blancs ";
                 }
@@ -236,7 +245,7 @@ void Partie::jouerPartie()
                 partieFinie = true;
             }
 
-            joueurActuel = !joueurActuel;
+            m_joueurActuel = !m_joueurActuel;
         }
 
 
