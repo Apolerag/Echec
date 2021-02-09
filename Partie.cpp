@@ -25,8 +25,6 @@ Partie::~Partie()
 
 void Partie::getCoordonnees(int& x, int& y)
 {
-    char colonne = 0;
-    int ligne = 0;
     string coordonnees = "";
     while (true)
     {
@@ -39,14 +37,12 @@ void Partie::getCoordonnees(int& x, int& y)
             }
             else
             {
-                colonne = coordonnees[0];
-                ligne = coordonnees[1];
                 break;
             }
         }
 
-        x = colonne - 'A';
-        y = ligne - '1';
+        x = coordonnees[0] - 'A';
+        y = coordonnees[1] - '1';
 
         if ((x >= 0) && (x <= 7) && (y >= 0) && (y <= 7))
         {
